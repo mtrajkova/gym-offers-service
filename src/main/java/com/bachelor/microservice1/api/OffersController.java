@@ -1,9 +1,9 @@
 package com.bachelor.microservice1.api;
 
-import com.gyms.apigyms.exceptions.GymDoesNotExist;
-import com.gyms.apigyms.exceptions.OfferForThisGymAlreadyExists;
-import com.gyms.apigyms.model.Offer;
-import com.gyms.apigyms.service.OffersService;
+import com.bachelor.microservice1.exceptions.GymDoesNotExist;
+import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
+import com.bachelor.microservice1.model.Offer;
+import com.bachelor.microservice1.service.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

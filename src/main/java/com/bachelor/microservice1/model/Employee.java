@@ -1,4 +1,4 @@
-package model;
+package com.bachelor.microservice1.model;
 
 public class Employee {
     private String id;

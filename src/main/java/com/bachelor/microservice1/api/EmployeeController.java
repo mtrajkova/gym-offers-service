@@ -1,6 +1,6 @@
 package com.bachelor.microservice1.api;
 
-import model.Employee;
+import com.bachelor.microservice1.model.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;

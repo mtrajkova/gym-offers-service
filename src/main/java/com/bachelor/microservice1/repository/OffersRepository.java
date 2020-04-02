@@ -1,6 +1,6 @@
 package com.bachelor.microservice1.repository;
 
-import com.gyms.apigyms.model.Offer;
+import com.bachelor.microservice1.model.Offer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

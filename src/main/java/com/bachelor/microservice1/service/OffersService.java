@@ -1,8 +1,8 @@
 package com.bachelor.microservice1.service;
 
-import com.gyms.apigyms.exceptions.GymDoesNotExist;
-import com.gyms.apigyms.exceptions.OfferForThisGymAlreadyExists;
-import com.gyms.apigyms.model.Offer;
+import com.bachelor.microservice1.exceptions.GymDoesNotExist;
+import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
+import com.bachelor.microservice1.model.Offer;
 
 import java.util.List;
 

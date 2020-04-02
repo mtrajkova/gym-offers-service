@@ -1,11 +1,11 @@
 package com.bachelor.microservice1.service.impl;
 
-import com.gyms.apigyms.exceptions.GymDoesNotExist;
-import com.gyms.apigyms.exceptions.OfferForThisGymAlreadyExists;
-import com.gyms.apigyms.model.Offer;
-import com.gyms.apigyms.repository.GymsRepository;
-import com.gyms.apigyms.repository.OffersRepository;
-import com.gyms.apigyms.service.OffersService;
+import com.bachelor.microservice1.exceptions.GymDoesNotExist;
+import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
+import com.bachelor.microservice1.model.Offer;
+import com.bachelor.microservice1.repository.GymsRepository;
+import com.bachelor.microservice1.repository.OffersRepository;
+import com.bachelor.microservice1.service.OffersService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

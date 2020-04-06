@@ -10,5 +10,8 @@ import java.util.Optional;
 @Repository
 public interface OffersRepository extends JpaRepository<Offer, Long> {
     List<Offer> findAllByGymId(Long gymId);
+
+    List<Offer> findAllByIdIn(List<Long> offerIds);
+
     Optional<Offer> findByNameAndAndDurationInDaysAndPriceAndGymId(String name, Integer durationInDays, Long price, Long gymId);
 }

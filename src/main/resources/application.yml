@@ -3,13 +3,16 @@ spring:
     name: employee-service
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
   datasource:
     url: jdbc:postgresql://localhost:5432/api-jva-gyms
     username: postgres
     password: 3005
     driver-class-name: org.postgresql.Driver
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 server:
   port: 8081
 eureka:

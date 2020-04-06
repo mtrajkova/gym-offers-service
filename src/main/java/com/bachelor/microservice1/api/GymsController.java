@@ -1,6 +1,7 @@
 package com.bachelor.microservice1.api;
 
 import com.bachelor.microservice1.exceptions.GymAlreadyExists;
+import com.bachelor.microservice1.exceptions.GymDoesNotExist;
 import com.bachelor.microservice1.model.Gym;
 import com.bachelor.microservice1.service.GymsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class GymsController {
     @GetMapping
     public List<Gym> getAllGyms() {
         return gymsService.getAllGyms();
+    }
+
+    @GetMapping("/{id}")
+    public Gym getGymsByIds(@PathVariable("id") Long gymId) throws GymDoesNotExist {
+        System.out.println("In Gyms Controller");
+        return gymsService.getGymById(gymId);
     }
 
     @PostMapping

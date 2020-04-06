@@ -2,13 +2,14 @@ package com.bachelor.microservice1.service.impl;
 
 import com.bachelor.microservice1.exceptions.GymDoesNotExist;
 import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
+import com.bachelor.microservice1.exceptions.OfferNotFound;
 import com.bachelor.microservice1.model.Offer;
 import com.bachelor.microservice1.repository.GymsRepository;
 import com.bachelor.microservice1.repository.OffersRepository;
 import com.bachelor.microservice1.service.OffersService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,7 +52,8 @@ public class OffersServiceImpl implements OffersService {
     }
 
     @Override
-    public Offer getOfferById(Long id) {
-        return null;
+    @Transactional
+    public Offer getOfferById(Long id) throws OfferNotFound {
+        return offersRepository.findById(id).orElseThrow(OfferNotFound::new);
     }
 }

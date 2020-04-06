@@ -2,6 +2,7 @@ package com.bachelor.microservice1.api;
 
 import com.bachelor.microservice1.exceptions.GymDoesNotExist;
 import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
+import com.bachelor.microservice1.exceptions.OfferNotFound;
 import com.bachelor.microservice1.model.Offer;
 import com.bachelor.microservice1.service.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,14 @@ public class OffersController {
         return offersService.getAllValidOffers();
     }
 
-    @GetMapping("/{gymId}")
+    @GetMapping("/gym/{gymId}")
     public List<Offer> getOffersForGym(@PathVariable Long gymId) throws GymDoesNotExist {
         return this.offersService.getOffersForGym(gymId);
+    }
+
+    @GetMapping("/{id}")
+    public Offer getOfferById(@PathVariable("id") Long offerId) throws OfferNotFound {
+        return this.offersService.getOfferById(offerId);
     }
 
     @PostMapping("/{gymId}")

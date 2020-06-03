@@ -1,5 +1,7 @@
 package com.bachelor.microservice1.configuration.security;
 
+import com.bachelor.microservice1.model.UserPrincipal;
+import com.bachelor.microservice1.service.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

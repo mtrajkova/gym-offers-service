@@ -1,18 +1,16 @@
-package com.bachelor.microservice1.configuration.security;
+package com.bachelor.microservice1.model;
 
-public class User {
+public class UserPrincipal {
     private Integer id;
     private String username;
-    private String password;
     private boolean isAdmin;
 
-    public User() {
+    public UserPrincipal() {
     }
 
-    public User(Integer id, String username, String password, boolean isAdmin) {
+    public UserPrincipal(Integer id, String username, boolean isAdmin) {
         this.id = id;
         this.username = username;
-        this.password = password;
         this.isAdmin = isAdmin;
     }
 
@@ -30,14 +28,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isAdmin() {

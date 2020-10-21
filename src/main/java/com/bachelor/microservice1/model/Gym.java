@@ -14,6 +14,8 @@ public class Gym {
     private String name;
     private String locationAddress;
     private String phoneNumber;
+    private String emailAddress;
+    private String imageLocation;
 
     public Long getId() {
         return id;
@@ -45,5 +47,21 @@ public class Gym {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getImageLocation() {
+        return imageLocation;
+    }
+
+    public void setImageLocation(String imageLocation) {
+        this.imageLocation = imageLocation;
     }
 }

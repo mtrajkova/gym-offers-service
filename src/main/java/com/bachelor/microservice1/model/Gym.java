@@ -15,7 +15,7 @@ public class Gym {
     private String locationAddress;
     private String phoneNumber;
     private String emailAddress;
-    private String imageLocation;
+    private String imageLocation = "./assets/img/placeholder.jpg";
 
     public Long getId() {
         return id;

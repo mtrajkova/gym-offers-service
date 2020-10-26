@@ -15,4 +15,10 @@ public interface OffersService {
     void addOfferForGym(Long gymId, Offer offer) throws OfferForThisGymAlreadyExists, GymDoesNotExist;
 
     Offer getOfferById(Long id) throws OfferNotFound;
+
+    List<Offer> getHotOffers();
+
+    List<Offer> getRegularOffers();
+
+    List<Offer> getAvailableOffersForGym(Long gymId) throws GymDoesNotExist;
 }

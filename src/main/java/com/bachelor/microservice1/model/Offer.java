@@ -1,6 +1,7 @@
 package com.bachelor.microservice1.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,18 +13,19 @@ public class Offer {
     @ManyToOne(fetch = FetchType.LAZY)
     private Gym gym;
 
+    @NotBlank
     private String name;
+    @NotBlank
     private String description;
+    @NotBlank
     private Long price;
     private Integer durationInDays;
     private Integer validityInDays;
-    private LocalDateTime startDate;
-    private LocalDateTime endOfOffer;
-    private Boolean isOfferValid;
+    private LocalDateTime startDate = LocalDateTime.now();
+    private LocalDateTime endOfOffer = LocalDateTime.now().plusDays(60);
+    private Boolean isRegularOffer = false;
 
     public Offer() {
-        this.startDate = LocalDateTime.now();
-        this.isOfferValid = true;
     }
 
     public Long getId() {
@@ -91,7 +93,7 @@ public class Offer {
     }
 
     public Boolean isOfferValid() {
-        return isOfferValid;
+        return LocalDateTime.now().isBefore(this.endOfOffer);
     }
 
 
@@ -101,5 +103,13 @@ public class Offer {
 
     public void setEndOfOffer(LocalDateTime endOfOffer) {
         this.endOfOffer = endOfOffer;
+    }
+
+    public Boolean getRegularOffer() {
+        return isRegularOffer;
+    }
+
+    public void setRegularOffer(Boolean regularOffer) {
+        isRegularOffer = regularOffer;
     }
 }

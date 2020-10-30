@@ -36,14 +36,14 @@ public class OffersController {
         return offersService.getRegularOffers();
     }
 
-    @GetMapping("/gym/{gymId}/all")
-    public List<Offer> getOffersForGym(@PathVariable Long gymId, @RequestHeader("Authorization") String jwt) throws GymDoesNotExist {
-        return this.offersService.getOffersForGym(gymId);
+    @GetMapping("/gym/{gymName}/all")
+    public List<Offer> getOffersForGym(@PathVariable String gymName) throws GymDoesNotExist {
+        return this.offersService.getOffersForGym(gymName);
     }
 
-    @GetMapping("/gym/{gymId}")
-    public List<Offer> getAvailableOffersForGym(@PathVariable Long gymId, @RequestHeader("Authorization") String jwt) throws GymDoesNotExist {
-        return this.offersService.getAvailableOffersForGym(gymId);
+    @GetMapping("/gym/{gymName}")
+    public List<Offer> getAvailableOffersForGym(@PathVariable String gymName) throws GymDoesNotExist {
+        return this.offersService.getAvailableOffersForGym(gymName);
     }
 
     @GetMapping("/{id}")

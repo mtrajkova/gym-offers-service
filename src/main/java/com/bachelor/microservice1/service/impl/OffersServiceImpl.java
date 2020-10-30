@@ -27,10 +27,14 @@ public class OffersServiceImpl implements OffersService {
     }
 
     @Override
-    public List<Offer> getOffersForGym(Long gymId) throws GymDoesNotExist {
-        gymsRepository.findById(gymId).orElseThrow(GymDoesNotExist::new);
+    public List<Offer> getOffersForGym(String gymName) throws GymDoesNotExist {
+        Gym foundGym = this.gymsRepository.findAll().stream()
+                .map(Gym::nameToLowerCase)
+                .filter(gym -> gym.getName().equals(gymName))
+                .findFirst()
+                .orElseThrow(GymDoesNotExist::new);
 
-        return offersRepository.findAllByGymId(gymId);
+        return offersRepository.findAllByGymId(foundGym.getId());
     }
 
     @Override
@@ -77,8 +81,8 @@ public class OffersServiceImpl implements OffersService {
     }
 
     @Override
-    public List<Offer> getAvailableOffersForGym(Long gymId) throws GymDoesNotExist {
-        return getOffersForGym(gymId).stream()
+    public List<Offer> getAvailableOffersForGym(String gymName) throws GymDoesNotExist {
+        return getOffersForGym(gymName).stream()
                 .filter(Offer::isOfferValid)
                 .collect(Collectors.toList());
     }

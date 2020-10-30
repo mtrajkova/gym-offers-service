@@ -62,4 +62,9 @@ public class Gym {
     public void setImageLocation(String imageLocation) {
         this.imageLocation = imageLocation;
     }
+
+    public Gym nameToLowerCase() {
+        this.name = this.name.toLowerCase();
+        return this;
+    }
 }

@@ -8,7 +8,7 @@ import com.bachelor.microservice1.model.Offer;
 import java.util.List;
 
 public interface OffersService {
-    List<Offer> getOffersForGym(Long gymId) throws GymDoesNotExist;
+    List<Offer> getOffersForGym(String gymName) throws GymDoesNotExist;
 
     List<Offer> getAllValidOffers();
 
@@ -20,5 +20,5 @@ public interface OffersService {
 
     List<Offer> getRegularOffers();
 
-    List<Offer> getAvailableOffersForGym(Long gymId) throws GymDoesNotExist;
+    List<Offer> getAvailableOffersForGym(String gymName) throws GymDoesNotExist;
 }

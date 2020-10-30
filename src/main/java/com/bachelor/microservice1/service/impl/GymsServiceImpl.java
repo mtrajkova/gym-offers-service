@@ -3,7 +3,9 @@ package com.bachelor.microservice1.service.impl;
 import com.bachelor.microservice1.exceptions.GymAlreadyExists;
 import com.bachelor.microservice1.exceptions.GymDoesNotExist;
 import com.bachelor.microservice1.model.Gym;
+import com.bachelor.microservice1.model.News;
 import com.bachelor.microservice1.repository.GymsRepository;
+import com.bachelor.microservice1.repository.NewsRepository;
 import com.bachelor.microservice1.service.GymsService;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import java.util.List;
 public class GymsServiceImpl implements GymsService {
 
     private final GymsRepository gymsRepository;
+    private final NewsRepository newsRepository;
 
-    public GymsServiceImpl(GymsRepository gymsRepository) {
+    public GymsServiceImpl(GymsRepository gymsRepository, NewsRepository newsRepository) {
         this.gymsRepository = gymsRepository;
+        this.newsRepository = newsRepository;
     }
 
     @Override
@@ -39,5 +43,10 @@ public class GymsServiceImpl implements GymsService {
     @Override
     public List<Gym> getGymsByLocation(String location) {
         return null;
+    }
+
+    @Override
+    public List<News> getNews(String jwt) {
+        return this.newsRepository.findAll();
     }
 }

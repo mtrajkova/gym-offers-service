@@ -51,7 +51,7 @@ public class OffersController {
         return this.offersService.getOfferById(offerId);
     }
 
-    @PostMapping("/{gymId}")
+    @PostMapping("/new/{gymId}")
     public void addOfferForGym(@PathVariable Long gymId, @RequestBody Offer offer, @RequestHeader("Authorization") String jwt) throws OfferForThisGymAlreadyExists, GymDoesNotExist {
         offersService.addOfferForGym(gymId, offer);
     }

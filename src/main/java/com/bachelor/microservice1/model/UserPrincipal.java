@@ -4,14 +4,16 @@ public class UserPrincipal {
     private Integer id;
     private String username;
     private boolean isAdmin;
+    private boolean isCreator;
 
     public UserPrincipal() {
     }
 
-    public UserPrincipal(Integer id, String username, boolean isAdmin) {
+    public UserPrincipal(Integer id, String username, boolean isAdmin, boolean isCreator) {
         this.id = id;
         this.username = username;
         this.isAdmin = isAdmin;
+        this.isCreator = isCreator;
     }
 
     public Integer getId() {
@@ -36,5 +38,13 @@ public class UserPrincipal {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public boolean isCreator() {
+        return isCreator;
+    }
+
+    public void setCreator(boolean creator) {
+        isCreator = creator;
     }
 }

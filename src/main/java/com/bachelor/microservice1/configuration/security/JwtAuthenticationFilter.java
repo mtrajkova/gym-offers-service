@@ -54,6 +54,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
 
+        if (userPrincipal.isCreator()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_CREATOR"));
+        }
+
         return new UsernamePasswordAuthenticationToken(userPrincipal, null, authorities);
     }
 }

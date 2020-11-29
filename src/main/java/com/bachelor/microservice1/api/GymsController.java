@@ -36,7 +36,7 @@ public class GymsController {
         return this.gymsService.getNews(jwt);
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public void addGym(@RequestBody Gym gym) throws GymAlreadyExists {
         gymsService.addGym(gym);
     }

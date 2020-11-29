@@ -25,7 +25,8 @@ public class JWTTokenService implements TokenService {
         Integer userId = jwsClaims.getBody()
                 .get("id", Integer.class);
         boolean isAdmin = jwsClaims.getBody().get("admin", Boolean.class);
+        boolean isCreator = jwsClaims.getBody().get("creator", Boolean.class);
 
-        return new UserPrincipal(userId, username, isAdmin);
+        return new UserPrincipal(userId, username, isAdmin, isCreator);
     }
 }

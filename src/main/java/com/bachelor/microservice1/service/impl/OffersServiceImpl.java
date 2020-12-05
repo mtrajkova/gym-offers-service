@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,15 +46,14 @@ public class OffersServiceImpl implements OffersService {
     }
 
     @Override
-    public void addOfferForGym(Long gymId, Offer offer) throws OfferForThisGymAlreadyExists, GymDoesNotExist {
-        if (offersRepository.findByNameAndAndDurationInDaysAndPriceAndGymId(
-                offer.getName(), offer.getDurationInDays(), offer.getPrice(), gymId
-        ).isPresent()) {
-            throw new OfferForThisGymAlreadyExists();
+    public void addOfferForGym(String gymName, Offer offer) throws GymDoesNotExist {
+        Gym gym = this.gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
+        offer.setGym(gym);
+        if (offer.getValidityInDays() == null) {
+            offer.setEndOfOffer(offer.getStartDate().plusDays(100000));
+        } else {
+            offer.setEndOfOffer(offer.getStartDate().plusDays(offer.getValidityInDays()));
         }
-
-        offer.setGym(gymsRepository.findById(gymId).orElseThrow(GymDoesNotExist::new));
-        offer.setEndOfOffer(offer.getStartDate().plusDays(offer.getValidityInDays()));
         offersRepository.save(offer);
     }
 

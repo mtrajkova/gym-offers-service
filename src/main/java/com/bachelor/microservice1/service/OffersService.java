@@ -12,7 +12,7 @@ public interface OffersService {
 
     List<Offer> getAllValidOffers();
 
-    void addOfferForGym(Long gymId, Offer offer) throws OfferForThisGymAlreadyExists, GymDoesNotExist;
+    void addOfferForGym(String gymName, Offer offer) throws GymDoesNotExist;
 
     Offer getOfferById(Long id) throws OfferNotFound;
 

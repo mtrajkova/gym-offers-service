@@ -1,9 +1,11 @@
 package com.bachelor.microservice1.exceptions;
 
-public class OfferNotFound extends Exception {
+import static com.bachelor.microservice1.exceptions.ErrorMessageConstants.OFFER_NOT_FOUND;
+
+public class OfferNotFound extends RuntimeException {
     public String message;
 
     public OfferNotFound() {
-        this.message = "This offer does not exists";
+        this.message = OFFER_NOT_FOUND;
     }
 }

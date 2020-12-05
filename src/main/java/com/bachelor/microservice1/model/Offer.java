@@ -17,7 +17,6 @@ public class Offer {
     private String name;
     @NotBlank
     private String description;
-    @NotBlank
     private Long price;
     private Integer durationInDays;
     private Integer validityInDays;

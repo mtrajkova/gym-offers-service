@@ -1,9 +1,11 @@
 package com.bachelor.microservice1.exceptions;
 
-public class GymDoesNotExist extends Exception {
+import static com.bachelor.microservice1.exceptions.ErrorMessageConstants.GYM_NOT_FOUND;
+
+public class GymDoesNotExist extends RuntimeException {
     public String message;
 
     public GymDoesNotExist() {
-        this.message = "Gym does not exist";
+        this.message = GYM_NOT_FOUND;
     }
 }

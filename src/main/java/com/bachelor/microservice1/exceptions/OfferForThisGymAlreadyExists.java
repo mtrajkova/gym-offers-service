@@ -1,9 +1,11 @@
 package com.bachelor.microservice1.exceptions;
 
-public class OfferForThisGymAlreadyExists extends Exception {
+import static com.bachelor.microservice1.exceptions.ErrorMessageConstants.OFFER_ALREADY_EXISTS;
+
+public class OfferForThisGymAlreadyExists extends RuntimeException {
     public String message;
 
     public OfferForThisGymAlreadyExists() {
-        this.message = "This offer for this gym already exists";
+        this.message = OFFER_ALREADY_EXISTS;
     }
 }

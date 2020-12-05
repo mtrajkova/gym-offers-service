@@ -2,10 +2,13 @@ package com.bachelor.microservice1.service.impl;
 
 import com.bachelor.microservice1.exceptions.GymAlreadyExists;
 import com.bachelor.microservice1.exceptions.GymDoesNotExist;
+import com.bachelor.microservice1.exceptions.OfferNotFound;
 import com.bachelor.microservice1.model.Gym;
 import com.bachelor.microservice1.model.News;
+import com.bachelor.microservice1.model.Offer;
 import com.bachelor.microservice1.repository.GymsRepository;
 import com.bachelor.microservice1.repository.NewsRepository;
+import com.bachelor.microservice1.repository.OffersRepository;
 import com.bachelor.microservice1.service.GymsService;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,12 @@ import java.util.List;
 public class GymsServiceImpl implements GymsService {
 
     private final GymsRepository gymsRepository;
+    private final OffersRepository offersRepository;
     private final NewsRepository newsRepository;
 
-    public GymsServiceImpl(GymsRepository gymsRepository, NewsRepository newsRepository) {
+    public GymsServiceImpl(GymsRepository gymsRepository, OffersRepository offersRepository, NewsRepository newsRepository) {
         this.gymsRepository = gymsRepository;
+        this.offersRepository = offersRepository;
         this.newsRepository = newsRepository;
     }
 
@@ -48,5 +53,38 @@ public class GymsServiceImpl implements GymsService {
     @Override
     public List<News> getNews(String jwt) {
         return this.newsRepository.findAll();
+    }
+
+    @Override
+    public void deleteGym(String gymName) throws GymDoesNotExist {
+        Gym gym = gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
+        this.deleteAllOffersForGym(gym.getId());
+        gymsRepository.delete(gym);
+    }
+
+    @Override
+    public void deleteOfferForGym(String gymName, Long offerId) throws GymDoesNotExist, OfferNotFound {
+        gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
+        Offer gymOffer = offersRepository.findByIdAndGymName(offerId, gymName).orElseThrow(OfferNotFound::new);
+        offersRepository.delete(gymOffer);
+    }
+
+    @Override
+    public List<News> getNewsForGym(String gymName) throws GymDoesNotExist {
+        gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
+        return newsRepository.findAllByGymName(gymName);
+    }
+
+    @Override
+    public void addNewsForGym(News news, String gymName) throws GymDoesNotExist {
+        Gym gym = gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
+        news.setGym(gym);
+        newsRepository.save(news);
+    }
+
+    @Override
+    public void deleteAllOffersForGym(Long gymId) throws GymDoesNotExist {
+        this.gymsRepository.findById(gymId).orElseThrow(GymDoesNotExist::new);
+        this.offersRepository.deleteAllByGymId(gymId);
     }
 }

@@ -35,7 +35,9 @@ public class OffersServiceImpl implements OffersService {
                 .findFirst()
                 .orElseThrow(GymDoesNotExist::new);
 
-        return offersRepository.findAllByGymId(foundGym.getId());
+        return offersRepository.findAllByGymId(foundGym.getId()).stream()
+                .sorted(Comparator.comparingLong(Offer::getId).reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -49,10 +51,10 @@ public class OffersServiceImpl implements OffersService {
     public void addOfferForGym(String gymName, Offer offer) throws GymDoesNotExist {
         Gym gym = this.gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
         offer.setGym(gym);
-        if (offer.getValidityInDays() == null) {
+        if (offer.getEndOfOffer() == null) {
             offer.setEndOfOffer(offer.getStartDate().plusDays(100000));
         } else {
-            offer.setEndOfOffer(offer.getStartDate().plusDays(offer.getValidityInDays()));
+            offer.setEndOfOffer(offer.getEndOfOffer());
         }
         offersRepository.save(offer);
     }

@@ -3,9 +3,12 @@ package com.bachelor.microservice1.api;
 import com.bachelor.microservice1.exceptions.GymDoesNotExist;
 import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
 import com.bachelor.microservice1.exceptions.OfferNotFound;
+import com.bachelor.microservice1.model.HttpResponse;
 import com.bachelor.microservice1.model.Offer;
 import com.bachelor.microservice1.service.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,8 +55,9 @@ public class OffersController {
     }
 
     @PostMapping("/new/{gymName}")
-    public void addOfferForGym(@PathVariable("gymName") String gymName, @RequestBody Offer offer) throws GymDoesNotExist {
+    public ResponseEntity<HttpResponse> addOfferForGym(@PathVariable("gymName") String gymName, @RequestBody Offer offer) throws GymDoesNotExist {
         offersService.addOfferForGym(gymName, offer);
+        return ResponseEntity.ok(new HttpResponse(null, "Offer for gym successfully added", HttpStatus.OK.value()));
     }
 
 }

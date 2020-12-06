@@ -12,7 +12,9 @@ import com.bachelor.microservice1.repository.OffersRepository;
 import com.bachelor.microservice1.service.GymsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GymsServiceImpl implements GymsService {
@@ -63,16 +65,18 @@ public class GymsServiceImpl implements GymsService {
     }
 
     @Override
-    public void deleteOfferForGym(String gymName, Long offerId) throws GymDoesNotExist, OfferNotFound {
+    public void deleteOfferForGym(String gymName, String offerName) throws GymDoesNotExist, OfferNotFound {
         gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
-        Offer gymOffer = offersRepository.findByIdAndGymName(offerId, gymName).orElseThrow(OfferNotFound::new);
+        Offer gymOffer = offersRepository.findByNameAndGymName(offerName, gymName).orElseThrow(OfferNotFound::new);
         offersRepository.delete(gymOffer);
     }
 
     @Override
     public List<News> getNewsForGym(String gymName) throws GymDoesNotExist {
         gymsRepository.findByName(gymName).orElseThrow(GymDoesNotExist::new);
-        return newsRepository.findAllByGymName(gymName);
+        return newsRepository.findAllByGymName(gymName).stream()
+                .sorted(Comparator.comparingLong(News::getId).reversed())
+                .collect(Collectors.toList());
     }
 
     @Override

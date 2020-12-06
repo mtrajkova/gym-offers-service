@@ -48,9 +48,9 @@ public class GymsController {
     }
 
     @PostMapping("/{gymName}/news")
-    public ResponseEntity<Void> addNewsForGym(@PathVariable("gymName") String gymName, @RequestBody News news) throws GymDoesNotExist {
+    public ResponseEntity<HttpResponse> addNewsForGym(@PathVariable("gymName") String gymName, @RequestBody News news) throws GymDoesNotExist {
         this.gymsService.addNewsForGym(news, gymName);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(new HttpResponse(null, "News for gym successfully added", HttpStatus.OK.value()));
     }
 
     @PostMapping("/new")
@@ -65,8 +65,9 @@ public class GymsController {
         return ResponseEntity.ok().body(new HttpResponse(null, "Gym successfully deleted", HttpStatus.OK.value()));
     }
 
-    @DeleteMapping("/{gymName}/offers/{offerId}")
-    public void deleteOfferForGym(@PathVariable("gymName") String gymName, @PathVariable("offerId") Long offerId) throws GymDoesNotExist, OfferNotFound {
-        gymsService.deleteOfferForGym(gymName, offerId);
+    @DeleteMapping("/{gymName}/offers/{offerName}")
+    public ResponseEntity<HttpResponse> deleteOfferForGym(@PathVariable("gymName") String gymName, @PathVariable("offerName") String offerName) throws GymDoesNotExist, OfferNotFound {
+        gymsService.deleteOfferForGym(gymName, offerName);
+        return ResponseEntity.ok(new HttpResponse(null, "Offer for gym successfully deleted", HttpStatus.OK.value()));
     }
 }

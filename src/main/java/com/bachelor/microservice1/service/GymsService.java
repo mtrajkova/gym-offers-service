@@ -22,7 +22,7 @@ public interface GymsService {
 
     void deleteGym(String gymName) throws GymDoesNotExist;
 
-    void deleteOfferForGym(String gymName, Long offerId) throws GymDoesNotExist, OfferNotFound;
+    void deleteOfferForGym(String gymName, String offerName) throws GymDoesNotExist, OfferNotFound;
 
     List<News> getNewsForGym(String gymName) throws GymDoesNotExist;
 

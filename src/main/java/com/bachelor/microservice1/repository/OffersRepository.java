@@ -15,6 +15,8 @@ public interface OffersRepository extends JpaRepository<Offer, Long> {
 
     Optional<Offer> findByIdAndGymName(Long offerId, String gymName);
 
+    Optional<Offer> findByNameAndGymName(String offerName, String gymName);
+
     Optional<Offer> findByNameAndAndDurationInDaysAndPriceAndGymId(String name, Integer durationInDays, Long price, Long gymId);
 
     void deleteAllByGymId(Long gymId);

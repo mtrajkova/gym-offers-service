@@ -14,6 +14,7 @@ public class Offer {
     private Gym gym;
 
     @NotBlank
+    @Column(unique = true)
     private String name;
     @NotBlank
     private String description;

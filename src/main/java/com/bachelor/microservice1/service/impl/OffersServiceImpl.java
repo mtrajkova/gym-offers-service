@@ -1,7 +1,6 @@
 package com.bachelor.microservice1.service.impl;
 
 import com.bachelor.microservice1.exceptions.GymDoesNotExist;
-import com.bachelor.microservice1.exceptions.OfferForThisGymAlreadyExists;
 import com.bachelor.microservice1.exceptions.OfferNotFound;
 import com.bachelor.microservice1.model.Gym;
 import com.bachelor.microservice1.model.Offer;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
